@@ -43,8 +43,8 @@ export const rooms: Room[] = [
     rateFrom: "Rates on request", // TODO: e.g. "from $120 / night"
     features: ["Free Wi-Fi", "En-suite bathroom", "Garden access", "Tea & coffee"],
     image: {
-      src: "",
-      alt: "The Garden Room at Nonna Lodge with a view over the gardens",
+      src: "/images/rooms/garden-room.webp",
+      alt: "The Garden Room at Nonna Lodge — a king bed dressed in white linen with a folded towel detail",
       category: "room",
     },
   },
@@ -61,8 +61,8 @@ export const rooms: Room[] = [
     rateFrom: "Rates on request", // TODO
     features: ["Free Wi-Fi", "Seating area", "Premium linens", "Mini-bar"],
     image: {
-      src: "",
-      alt: "The Deluxe Double room at Nonna Lodge",
+      src: "/images/rooms/deluxe-double.webp",
+      alt: "The Deluxe Double at Nonna Lodge — a warmly lit room with a king bed and bedside lamps",
       category: "room",
     },
   },
@@ -79,8 +79,8 @@ export const rooms: Room[] = [
     rateFrom: "Rates on request", // TODO
     features: ["Free Wi-Fi", "Two sleeping areas", "Family bathroom", "Tea & coffee"],
     image: {
-      src: "",
-      alt: "The Family Suite at Nonna Lodge",
+      src: "/images/rooms/family-suite.webp",
+      alt: "The Family Suite at Nonna Lodge — twin beds with decorative folded towels",
       category: "room",
     },
   },
@@ -97,8 +97,8 @@ export const rooms: Room[] = [
     rateFrom: "Rates on request", // TODO
     features: ["Free Wi-Fi", "Soaking tub", "Private balcony", "Welcome treats"],
     image: {
-      src: "",
-      alt: "The Honeymoon Suite at Nonna Lodge",
+      src: "/images/rooms/honeymoon-suite.webp",
+      alt: "The Honeymoon Suite at Nonna Lodge — a romantic, warmly lit room with a soft runner across the bed",
       category: "room",
     },
   },

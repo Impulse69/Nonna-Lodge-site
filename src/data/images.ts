@@ -1,16 +1,9 @@
 /*
   IMAGE MANIFEST
   --------------
-  Every photo used on the site is declared here (or alongside its room/amenity
-  in rooms.ts / amenities.ts) so each image has an explicit, named context.
-
-  Workflow:
-  - `src: ""` marks a slot that is awaiting a real photo. Until then the UI
-    renders a labelled placeholder (see SmartImage), so layout and intent are
-    visible without the asset.
-  - During the image-integration pass, real photos committed under
-    /public/images/** are matched to these slots and `src` is filled with a
-    descriptive path. `alt` should describe what the photo actually shows.
+  Photos used in specific page sections. Each slot points at an optimised WebP
+  under /public/images and carries alt text describing what the photo shows.
+  The gallery (everything else) lives in src/data/gallery.ts.
 */
 
 export type ImageCategory =
@@ -24,100 +17,79 @@ export type ImageCategory =
   | "detail";
 
 export interface SiteImage {
-  /** Public path e.g. "/images/hero/exterior-dusk.jpg". Empty until wired up. */
+  /** Public path e.g. "/images/hero/lodge-exterior-facade.webp". */
   src: string;
   /** Descriptive alternative text for accessibility + SEO. */
   alt: string;
   category: ImageCategory;
 }
 
-/** Standalone slots consumed by specific page sections. */
 export const images = {
   heroHome: {
-    src: "",
-    alt: "Nonna Lodge exterior at golden hour with its gardens in view",
+    src: "/images/hero/lodge-exterior-facade.webp",
+    alt: "The Nonna Lodge building and gardens beneath its rooftop sign",
     category: "hero",
   },
   welcome: {
-    src: "",
-    alt: "Warm, inviting lounge interior at Nonna Lodge",
+    src: "/images/interior/lounge-welcome.webp",
+    alt: "The lounge at Nonna Lodge with armchairs gathered around a marble table",
     category: "interior",
   },
   experienceTeaser: {
-    src: "",
-    alt: "The natural surroundings guests can explore near Nonna Lodge",
-    category: "surroundings",
+    src: "/images/dining/curved-bar.webp",
+    alt: "The curved, softly lit bar at Nonna Lodge",
+    category: "dining",
   },
   ctaBand: {
-    src: "",
-    alt: "Atmospheric evening view of Nonna Lodge",
+    src: "/images/exterior/walkway-evening.webp",
+    alt: "The garden walkway at Nonna Lodge in the evening light",
     category: "exterior",
   },
   roomsHeader: {
-    src: "",
-    alt: "A beautifully made bed in a Nonna Lodge guest room",
+    src: "/images/rooms/room-header.webp",
+    alt: "A warmly lit guest room at Nonna Lodge",
     category: "room",
   },
   experiencesHeader: {
-    src: "",
-    alt: "Scenic landscape surrounding Nonna Lodge",
+    src: "/images/exterior/garden-walkway.webp",
+    alt: "The planted walkway running alongside Nonna Lodge",
     category: "surroundings",
   },
   diningHeader: {
-    src: "",
+    src: "/images/dining/restaurant-area.webp",
     alt: "The restaurant dining area at Nonna Lodge",
     category: "dining",
   },
   diningBreakfast: {
-    src: "",
-    alt: "A freshly prepared breakfast at Nonna Lodge",
+    src: "/images/dining/breakfast-spread.webp",
+    alt: "A breakfast spread of dishes served at Nonna Lodge",
     category: "dining",
   },
   diningDish: {
-    src: "",
-    alt: "A seasonal dish served at the Nonna Lodge restaurant",
+    src: "/images/dining/signature-dish.webp",
+    alt: "Fried rice with grilled chicken, plated at the Nonna Lodge restaurant",
     category: "dining",
   },
   diningBar: {
-    src: "",
-    alt: "The bar at Nonna Lodge",
+    src: "/images/dining/bar-counter.webp",
+    alt: "The bar counter and stools at Nonna Lodge",
     category: "dining",
   },
   aboutStory: {
-    src: "",
-    alt: "The Nonna Lodge building, reflecting its character and history",
+    src: "/images/exterior/lodge-facade-gardens.webp",
+    alt: "The Nonna Lodge building and its landscaped gardens",
     category: "exterior",
   },
   aboutLocation: {
-    src: "",
-    alt: "The setting and location around Nonna Lodge",
+    src: "/images/exterior/entrance-flowers.webp",
+    alt: "The entrance steps to Nonna Lodge framed by flowering plants",
     category: "surroundings",
   },
   contactHeader: {
-    src: "",
-    alt: "The welcoming entrance and reception at Nonna Lodge",
+    src: "/images/interior/reception-branding.webp",
+    alt: "The Nonna Lodge reception and its branded feature wall",
     category: "interior",
   },
 } satisfies Record<string, SiteImage>;
 
 export type ImageKey = keyof typeof images;
-
-/*
-  GALLERY
-  -------
-  The gallery is the home for genuinely gallery-worthy photos that are not
-  better placed in a specific section. These placeholders are replaced during
-  the image-integration pass with the remaining real photos so that no image
-  goes unused.
-*/
-export const galleryImages: SiteImage[] = [
-  { src: "", alt: "Nonna Lodge exterior", category: "exterior" },
-  { src: "", alt: "Guest room interior", category: "room" },
-  { src: "", alt: "Lounge and common area", category: "interior" },
-  { src: "", alt: "Dining at Nonna Lodge", category: "dining" },
-  { src: "", alt: "Garden and grounds", category: "amenity" },
-  { src: "", alt: "Surrounding landscape", category: "surroundings" },
-  { src: "", alt: "Architectural detail", category: "detail" },
-  { src: "", alt: "Evening ambience", category: "exterior" },
-  { src: "", alt: "A quiet corner to relax", category: "interior" },
-];

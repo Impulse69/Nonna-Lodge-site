@@ -7,13 +7,19 @@ import { ButtonLink } from "@/components/ui/Button";
 import { RoomCard } from "@/components/rooms/RoomCard";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { images, galleryImages } from "@/data/images";
+import type { SiteImage } from "@/data/images";
+import { images } from "@/data/images";
+import { galleryImages } from "@/data/gallery";
 import { rooms } from "@/data/rooms";
 import { amenities } from "@/data/amenities";
 import { site } from "@/data/site";
 
 export default function Home() {
   const featuredRooms = rooms.slice(0, 3);
+  // A varied 4-up strip: one representative photo per category.
+  const galleryStrip = (["exterior", "room", "dining", "interior"] as const)
+    .map((c) => galleryImages.find((g) => g.category === c))
+    .filter((img): img is SiteImage => Boolean(img));
 
   return (
     <>
@@ -90,7 +96,7 @@ export default function Home() {
                 align="left"
                 eyebrow="Experiences"
                 title="More than a place to sleep"
-                description="Dine well, relax by the pool, gather by the fire, or set out to explore the area. There's plenty to enjoy without ever feeling rushed."
+                description="Dine well, unwind at the bar, relax on your balcony with a view, or simply slow down. There's plenty to enjoy without ever feeling rushed."
               />
               <ButtonLink href="/experiences" className="mt-6">
                 Discover experiences
@@ -115,9 +121,9 @@ export default function Home() {
             description="A few moments from around Nonna Lodge."
           />
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {galleryImages.slice(0, 4).map((image, i) => (
+            {galleryStrip.map((image) => (
               <SmartImage
-                key={i}
+                key={image.src}
                 image={image}
                 className="aspect-square w-full rounded-xl"
                 sizes="(max-width: 640px) 50vw, 25vw"

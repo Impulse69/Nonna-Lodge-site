@@ -2,7 +2,8 @@ import { PageHeader } from "@/components/sections/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { createMetadata } from "@/lib/seo";
-import { images, galleryImages } from "@/data/images";
+import { images } from "@/data/images";
+import { galleryImages } from "@/data/gallery";
 
 export const metadata = createMetadata({
   title: "Gallery",

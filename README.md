@@ -69,8 +69,15 @@ Search the codebase for `TODO` to find everything that needs real data:
 - **Contact form** — connect to an email service / API route (currently shows a
   confirmation only — `src/components/forms/ContactForm.tsx`)
 - **Site URL** — set the live domain for SEO/canonical (`src/data/site.ts`)
-- **Dining page** — if there are no food/restaurant photos, remove `src/app/dining/`
-  and its nav entry in `src/data/site.ts`
+
+## Photos
+
+All 114 supplied photos are integrated and optimised (originals → WebP, ~91%
+smaller). 21 are placed in specific sections (hero, rooms, dining, reception,
+exterior, etc.) and the remaining 93 fill the filterable gallery, so every photo
+is used in a context that matches what it shows. To swap or add photos, drop new
+files in `public/images/_inbox/`, run `npm run optimize:images`, move them into the
+right folder under `public/images/`, and reference them in `src/data/`.
 
 ## Deployment
 
