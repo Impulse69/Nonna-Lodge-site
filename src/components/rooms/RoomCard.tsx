@@ -5,7 +5,7 @@ import type { Room } from "@/data/rooms";
 
 export function RoomCard({ room }: { room: Room }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white/60 transition-shadow hover:shadow-lg">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-lg">
       <SmartImage
         image={room.image}
         className="aspect-[4/3] w-full"

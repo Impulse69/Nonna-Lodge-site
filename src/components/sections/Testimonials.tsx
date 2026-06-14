@@ -28,7 +28,7 @@ export function Testimonials() {
       {testimonials.map((t, i) => (
         <figure
           key={i}
-          className="flex flex-col rounded-2xl border border-stone-200 bg-white/60 p-6"
+          className="flex flex-col rounded-2xl border border-stone-200 bg-white p-6 shadow-sm"
         >
           <Quote className="h-7 w-7 text-clay/40" aria-hidden="true" />
           <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-stone-700">

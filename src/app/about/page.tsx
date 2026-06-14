@@ -71,12 +71,12 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-sand/50 py-16 sm:py-24">
+      <section className="py-16 sm:py-24">
         <Container>
           <SectionHeading eyebrow="What we believe" title="Our values" />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {values.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="rounded-2xl border border-stone-200 bg-white/60 p-6">
+              <div key={title} className="rounded-2xl border border-stone-200 bg-white shadow-sm p-6">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-sand text-clay">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
@@ -102,7 +102,7 @@ export default function AboutPage() {
               className="aspect-[4/3] w-full rounded-2xl"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="flex flex-col justify-center rounded-2xl border border-stone-200 bg-white/60 p-8">
+            <div className="flex flex-col justify-center rounded-2xl border border-stone-200 bg-white shadow-sm p-8">
               <h3 className="text-2xl text-charcoal">How to find us</h3>
               <ul className="mt-5 space-y-3 text-stone-600">
                 <li className="flex items-start gap-3">

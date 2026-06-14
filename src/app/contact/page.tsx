@@ -75,7 +75,7 @@ export default function ContactPage() {
             </div>
 
             {/* Form */}
-            <div className="rounded-2xl border border-stone-200 bg-white/60 p-6 sm:p-8">
+            <div className="rounded-2xl border border-stone-200 bg-white shadow-sm p-6 sm:p-8">
               <h2 className="text-2xl text-charcoal">Send an enquiry</h2>
               <p className="mt-2 text-sm text-stone-600">
                 Fill in the form and we&apos;ll get back to you as soon as we can.
