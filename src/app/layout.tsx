@@ -32,7 +32,7 @@ const jsonLd = {
   name: site.name,
   description: site.description,
   url: site.url,
-  telephone: site.contact.phone,
+  telephone: site.contact.phones[0],
   address: {
     "@type": "PostalAddress",
     streetAddress: site.contact.addressLine1,

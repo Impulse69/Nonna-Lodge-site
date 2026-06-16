@@ -13,13 +13,16 @@ export const site = {
   url: "https://www.nonnalodge.com",
 
   contact: {
-    addressLine1: "TODO: Street address",
-    addressLine2: "TODO: City, Region, Postcode",
+    addressLine1: "Off Fire Service Road, Aduamoa-Kwahu",
+    addressLine2: "P.O. Box 10, Eastern Region",
     country: "Ghana",
-    phone: "TODO: +233 00 000 0000",
+    phones: ["+233 59 818 8881", "+233 20 565 5544", "+233 59 828 8282"],
     email: "nonnalodge3@gmail.com",
     hoursReception: "Reception open 24 hours", // 24-hour reception
   },
+
+  // Used for the key-free Google Maps embed (no coordinates needed).
+  mapQuery: "Nonna Lodge, Aduamoa-Kwahu, Eastern Region, Ghana",
 
   // TODO: point at the real booking engine. Falls back to the contact page.
   bookingUrl: "/contact",

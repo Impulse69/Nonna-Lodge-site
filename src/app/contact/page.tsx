@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/sections/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { MapEmbed } from "@/components/ui/MapEmbed";
 import { createMetadata } from "@/lib/seo";
 import { images } from "@/data/images";
 import { site } from "@/data/site";
@@ -21,8 +22,8 @@ export default function ContactPage() {
       label: "Address",
       lines: [site.contact.addressLine1, site.contact.addressLine2, site.contact.country],
     },
-    { icon: Phone, label: "Phone", lines: [site.contact.phone], href: `tel:${site.contact.phone.replace(/\s+/g, "")}` },
-    { icon: Mail, label: "Email", lines: [site.contact.email], href: `mailto:${site.contact.email}` },
+    { icon: Phone, label: "Phone", lines: site.contact.phones, linkType: "tel" as const },
+    { icon: Mail, label: "Email", lines: [site.contact.email], linkType: "mailto" as const },
     { icon: Clock, label: "Reception", lines: [site.contact.hoursReception] },
   ];
 
@@ -47,7 +48,7 @@ export default function ContactPage() {
                 description="Questions, special requests or reservations — we're happy to help."
               />
               <ul className="mt-8 space-y-6">
-                {details.map(({ icon: Icon, label, lines, href }) => (
+                {details.map(({ icon: Icon, label, lines, linkType }) => (
                   <li key={label} className="flex items-start gap-4">
                     <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sand text-clay">
                       <Icon className="h-5 w-5" aria-hidden="true" />
@@ -55,23 +56,29 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-wider text-charcoal">{label}</p>
                       <div className="mt-1 text-stone-600">
-                        {href ? (
-                          <a href={href} className="hover:text-clay">
-                            {lines[0]}
-                          </a>
-                        ) : (
-                          lines.map((line, i) => <div key={i}>{line}</div>)
-                        )}
+                        {lines.map((line, i) => {
+                          if (linkType) {
+                            const href =
+                              linkType === "tel"
+                                ? `tel:${line.replace(/\s+/g, "")}`
+                                : `mailto:${line}`;
+                            return (
+                              <div key={i}>
+                                <a href={href} className="hover:text-clay">
+                                  {line}
+                                </a>
+                              </div>
+                            );
+                          }
+                          return <div key={i}>{line}</div>;
+                        })}
                       </div>
                     </div>
                   </li>
                 ))}
               </ul>
 
-              {/* TODO: embed an interactive map with real coordinates. */}
-              <div className="mt-8 flex aspect-[16/9] items-center justify-center rounded-2xl border border-dashed border-stone-300 bg-sand text-center text-xs uppercase tracking-wider text-stone-500">
-                Map embed — TODO: add coordinates
-              </div>
+              <MapEmbed className="mt-8" />
             </div>
 
             {/* Form */}

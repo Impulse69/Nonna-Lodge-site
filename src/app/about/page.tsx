@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/sections/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { MapEmbed } from "@/components/ui/MapEmbed";
 import { createMetadata } from "@/lib/seo";
 import { images } from "@/data/images";
 import { site } from "@/data/site";
@@ -116,10 +117,7 @@ export default function AboutPage() {
                   </span>
                 </li>
               </ul>
-              {/* TODO: embed an interactive map (e.g. Google Maps iframe) with real coordinates. */}
-              <div className="mt-6 flex aspect-[16/9] items-center justify-center rounded-xl border border-dashed border-stone-300 bg-sand text-center text-xs uppercase tracking-wider text-stone-500">
-                Map embed — TODO: add coordinates
-              </div>
+              <MapEmbed className="mt-6 rounded-xl" />
             </div>
           </div>
         </Container>

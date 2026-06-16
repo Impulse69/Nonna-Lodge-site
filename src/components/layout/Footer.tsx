@@ -59,11 +59,19 @@ export function Footer() {
                 {site.contact.addressLine2}
               </span>
             </li>
-            <li className="flex items-center gap-3">
-              <Phone className="h-4 w-4 shrink-0 text-clay" aria-hidden="true" />
-              <a href={`tel:${site.contact.phone.replace(/\s+/g, "")}`} className="hover:text-clay">
-                {site.contact.phone}
-              </a>
+            <li className="flex items-start gap-3">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-clay" aria-hidden="true" />
+              <span className="flex flex-col">
+                {site.contact.phones.map((phone) => (
+                  <a
+                    key={phone}
+                    href={`tel:${phone.replace(/\s+/g, "")}`}
+                    className="hover:text-clay"
+                  >
+                    {phone}
+                  </a>
+                ))}
+              </span>
             </li>
             <li className="flex items-center gap-3">
               <Mail className="h-4 w-4 shrink-0 text-clay" aria-hidden="true" />
