@@ -21,8 +21,9 @@ export const site = {
     hoursReception: "Reception open 24 hours", // 24-hour reception
   },
 
-  // Used for the key-free Google Maps embed (no coordinates needed).
-  mapQuery: "Nonna Lodge, Aduamoa-Kwahu, Eastern Region, Ghana",
+  // Exact coordinates for the map embed (drops a pin on the lodge).
+  mapQuery: "6.6389336,-0.7564041",
+  mapUrl: "https://www.google.com/maps?q=6.6389336,-0.7564041&z=17",
 
   // TODO: point at the real booking engine. Falls back to the contact page.
   bookingUrl: "/contact",

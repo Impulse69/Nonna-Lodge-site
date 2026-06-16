@@ -117,7 +117,7 @@ export default function AboutPage() {
                   </span>
                 </li>
               </ul>
-              <MapEmbed className="mt-6 rounded-xl" />
+              <MapEmbed className="mt-6" />
             </div>
           </div>
         </Container>
