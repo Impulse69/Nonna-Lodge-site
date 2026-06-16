@@ -1,19 +1,21 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Wifi,
+  Clock,
   UtensilsCrossed,
   BellRing,
-  Coffee,
   Car,
-  Snowflake,
-  Mountain,
-  Clock,
+  Briefcase,
+  Zap,
+  Wifi,
+  Coffee,
+  ShieldCheck,
   Martini,
+  Mountain,
   Sofa,
 } from "lucide-react";
 import type { SiteImage } from "@/data/images";
 
-/* Quick, icon-led amenity facts (home teaser). Kept to what the lodge offers. */
+/* The lodge's facilities (shown as the icon grid). */
 export interface Amenity {
   icon: LucideIcon;
   title: string;
@@ -21,18 +23,19 @@ export interface Amenity {
 }
 
 export const amenities: Amenity[] = [
-  { icon: Wifi, title: "Free High-Speed Wi-Fi", description: "Stay connected throughout the lodge." },
+  { icon: Clock, title: "24-Hour Reception", description: "Someone to help you, day or night." },
   { icon: UtensilsCrossed, title: "Restaurant & Bar", description: "On-site dining and a relaxed bar." },
-  { icon: BellRing, title: "Room Service", description: "Enjoy meals and drinks in your room." },
-  { icon: Coffee, title: "Breakfast", description: "Start the day with a hearty breakfast." },
-  { icon: Snowflake, title: "Air-Conditioned Rooms", description: "Climate control in every room." },
-  { icon: Mountain, title: "Scenic Views", description: "Hillside views from the balconies." },
-  { icon: Car, title: "Free Parking", description: "On-site parking for all guests." },
-  { icon: Clock, title: "24/7 Reception", description: "A warm welcome, day or night." },
+  { icon: BellRing, title: "Room Service", description: "Meals and drinks brought to your room." },
+  { icon: Car, title: "Car Park", description: "On-site parking for all guests." },
+  { icon: Briefcase, title: "Business & Meeting Rooms", description: "Spaces for meetings and events." },
+  { icon: Zap, title: "Standby Generator", description: "Reliable power around the clock." },
+  { icon: Wifi, title: "Free Wi-Fi", description: "Fast internet throughout the lodge." },
+  { icon: Coffee, title: "Bed & Breakfast", description: "Breakfast included with every stay." },
+  { icon: ShieldCheck, title: "CCTV Security", description: "Monitored for your peace of mind." },
 ];
 
 /*
-  Experience sections for the /experiences page — each backed by a real photo.
+  Richer experience sections for the /experiences page — each backed by a real photo.
 */
 export interface Experience {
   slug: string;

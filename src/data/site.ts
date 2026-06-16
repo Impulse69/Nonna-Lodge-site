@@ -15,11 +15,10 @@ export const site = {
   contact: {
     addressLine1: "TODO: Street address",
     addressLine2: "TODO: City, Region, Postcode",
-    country: "TODO: Country",
-    phone: "TODO: +00 000 000 000",
-    // Keep this a valid-looking placeholder so mailto: links don't break.
-    email: "hello@nonnalodge.com", // TODO: real reservations email
-    hoursReception: "Reception open daily, 7:00 – 22:00", // TODO: confirm hours
+    country: "Ghana",
+    phone: "TODO: +233 00 000 0000",
+    email: "nonnalodge3@gmail.com",
+    hoursReception: "Reception open 24 hours", // 24-hour reception
   },
 
   // TODO: point at the real booking engine. Falls back to the contact page.

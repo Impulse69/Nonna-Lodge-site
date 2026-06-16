@@ -1,14 +1,9 @@
 import type { SiteImage } from "@/data/images";
 
 /*
-  Room types — placeholder copy and rates (marked TODO). Each room carries its
-  own image slot so the photo↔room mapping is explicit and type-checked.
-  During the image pass, fill `image.src` (and ideally add extra gallery shots).
+  Room categories and nightly rates (Ghanaian Cedi). The lodge has 20 rooms
+  across the four categories below. Each category carries a representative photo.
 */
-
-export interface RoomFeature {
-  label: string;
-}
 
 export interface Room {
   slug: string;
@@ -19,11 +14,11 @@ export interface Room {
   occupancy: string;
   /** e.g. "King bed" */
   bed: string;
-  /** e.g. "28 m²" */
-  size: string;
-  /** e.g. "Garden view" */
-  view: string;
-  /** Display rate — TODO: replace with real pricing. */
+  /** Optional — only shown if provided. */
+  size?: string;
+  /** Optional — only shown if provided. */
+  view?: string;
+  /** Nightly rate, e.g. "GH₵ 400" (a "/ night" suffix is added in the UI). */
   rateFrom: string;
   features: string[];
   image: SiteImage;
@@ -31,74 +26,66 @@ export interface Room {
 
 export const rooms: Room[] = [
   {
-    slug: "garden-room",
-    name: "Garden Room",
-    shortDescription: "A cosy retreat opening onto the lodge gardens.",
+    slug: "standard-room",
+    name: "Standard Room",
+    shortDescription: "Comfortable and affordable — ideal for solo travellers.",
     description:
-      "Our Garden Room is a calm, light-filled space with direct views over the grounds. Thoughtfully furnished for a restful stay, it's ideal for solo travellers and couples seeking a peaceful base.",
-    occupancy: "Sleeps 2",
-    bed: "Queen bed",
-    size: "24 m²", // TODO: confirm
-    view: "Garden view",
-    rateFrom: "Rates on request", // TODO: e.g. "from $120 / night"
-    features: ["Free Wi-Fi", "En-suite bathroom", "Garden access", "Tea & coffee"],
+      "Our most affordable category, the Standard Room is a comfortable, well-appointed space for single occupancy. Everything you need for a restful night, with none of the fuss.",
+    occupancy: "Single occupancy",
+    bed: "Double bed",
+    rateFrom: "GH₵ 400",
+    features: ["Free Wi-Fi", "En-suite bathroom", "Air conditioning", "Breakfast included"],
     image: {
       src: "/images/rooms/garden-room.webp",
-      alt: "The Garden Room at Nonna Lodge — a king bed dressed in white linen with a folded towel detail",
+      alt: "A Standard Room at Nonna Lodge — a neat double bed dressed in white linen",
       category: "room",
     },
   },
   {
-    slug: "deluxe-double",
-    name: "Deluxe Double",
-    shortDescription: "Generous comfort with elegant, homely touches.",
+    slug: "premium-room",
+    name: "Premium Room",
+    shortDescription: "Extra space and comfort with refined touches.",
     description:
-      "The Deluxe Double offers extra space and a refined finish, with a comfortable seating area and a spacious en-suite. A perfect choice for guests who like a little more room to unwind.",
+      "The Premium Room is a step up in space and comfort, with a warmer, more refined finish and thoughtful extras to help you settle in and unwind.",
     occupancy: "Sleeps 2",
-    bed: "King bed",
-    size: "30 m²", // TODO: confirm
-    view: "Courtyard view",
-    rateFrom: "Rates on request", // TODO
-    features: ["Free Wi-Fi", "Seating area", "Premium linens", "Mini-bar"],
+    bed: "Queen bed",
+    rateFrom: "GH₵ 600",
+    features: ["Free Wi-Fi", "En-suite bathroom", "Air conditioning", "Breakfast included", "Room service"],
     image: {
       src: "/images/rooms/deluxe-double.webp",
-      alt: "The Deluxe Double at Nonna Lodge — a warmly lit room with a king bed and bedside lamps",
+      alt: "A Premium Room at Nonna Lodge — a warmly lit room with a queen bed and bedside lamps",
+      category: "room",
+    },
+  },
+  {
+    slug: "executive-room",
+    name: "Executive Room",
+    shortDescription: "Our top-tier room, elegantly finished.",
+    description:
+      "Our most generous and elegantly furnished category, the Executive Room is finished to a higher standard — perfect for guests who want a little more space and a touch of luxury.",
+    occupancy: "Sleeps 2",
+    bed: "King bed",
+    rateFrom: "GH₵ 800",
+    features: ["Free Wi-Fi", "En-suite bathroom", "Air conditioning", "Breakfast included", "Room service", "Work area"],
+    image: {
+      src: "/images/rooms/honeymoon-suite.webp",
+      alt: "An Executive Room at Nonna Lodge — a spacious, warmly lit room with a king bed",
       category: "room",
     },
   },
   {
     slug: "family-suite",
-    name: "Family Suite",
-    shortDescription: "Room for the whole family to relax together.",
+    name: "Family Room / Suite",
+    shortDescription: "Spacious comfort for the whole family.",
     description:
-      "Our Family Suite combines a master bedroom with a flexible second sleeping area, giving families space and privacy without compromising on comfort or style.",
+      "Our largest category, the Family Room / Suite offers room for the whole family to relax together, with extra space and all the comforts of home.",
     occupancy: "Sleeps 4",
-    bed: "King bed + twin beds",
-    size: "42 m²", // TODO: confirm
-    view: "Garden view",
-    rateFrom: "Rates on request", // TODO
-    features: ["Free Wi-Fi", "Two sleeping areas", "Family bathroom", "Tea & coffee"],
+    bed: "Two double beds",
+    rateFrom: "GH₵ 1,000",
+    features: ["Free Wi-Fi", "En-suite bathroom", "Air conditioning", "Breakfast included", "Room service", "Extra space"],
     image: {
       src: "/images/rooms/family-suite.webp",
-      alt: "The Family Suite at Nonna Lodge — twin beds with decorative folded towels",
-      category: "room",
-    },
-  },
-  {
-    slug: "honeymoon-suite",
-    name: "Honeymoon Suite",
-    shortDescription: "Our most romantic and indulgent room.",
-    description:
-      "The Honeymoon Suite is designed for special occasions — a luxurious bed, a beautiful outlook and quiet, considered details that make every stay feel like a celebration.",
-    occupancy: "Sleeps 2",
-    bed: "Super king bed",
-    size: "38 m²", // TODO: confirm
-    view: "Best view in the lodge",
-    rateFrom: "Rates on request", // TODO
-    features: ["Free Wi-Fi", "Soaking tub", "Private balcony", "Welcome treats"],
-    image: {
-      src: "/images/rooms/honeymoon-suite.webp",
-      alt: "The Honeymoon Suite at Nonna Lodge — a romantic, warmly lit room with a soft runner across the bed",
+      alt: "The Family Room / Suite at Nonna Lodge — two beds with decorative folded towels",
       category: "room",
     },
   },

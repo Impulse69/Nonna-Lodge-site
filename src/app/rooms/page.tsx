@@ -1,4 +1,4 @@
-import { Check, Users, BedDouble, Maximize, Eye } from "lucide-react";
+import { Check, Users, BedDouble } from "lucide-react";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { SmartImage } from "@/components/ui/SmartImage";
@@ -12,7 +12,7 @@ import { site } from "@/data/site";
 export const metadata = createMetadata({
   title: "Rooms & Rates",
   description:
-    "Explore the rooms and suites at Nonna Lodge — from cosy garden rooms to our romantic honeymoon suite, each styled for comfort and rest.",
+    "Room categories and nightly rates at Nonna Lodge — Standard, Premium, Executive and Family / Suite, each styled for comfort and rest.",
   path: "/rooms",
 });
 
@@ -22,7 +22,7 @@ export default function RoomsPage() {
       <PageHeader
         eyebrow="Stay with us"
         title="Rooms & Rates"
-        description="Comfortable, characterful rooms for every kind of stay."
+        description="Twenty rooms across four categories, each styled for comfort and rest."
         image={images.roomsHeader}
       />
 
@@ -34,8 +34,6 @@ export default function RoomsPage() {
               const facts = [
                 { icon: Users, value: room.occupancy },
                 { icon: BedDouble, value: room.bed },
-                { icon: Maximize, value: room.size },
-                { icon: Eye, value: room.view },
               ];
               return (
                 <article
@@ -74,7 +72,10 @@ export default function RoomsPage() {
                     </ul>
 
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                      <span className="text-lg font-medium text-charcoal">{room.rateFrom}</span>
+                      <span className="text-lg font-medium text-charcoal">
+                        {room.rateFrom}
+                        <span className="text-base font-normal text-stone-500"> / night</span>
+                      </span>
                       <ButtonLink href={site.bookingUrl}>Book this room</ButtonLink>
                     </div>
                   </div>

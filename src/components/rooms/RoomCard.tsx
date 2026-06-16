@@ -28,7 +28,10 @@ export function RoomCard({ room }: { room: Room }) {
         </div>
 
         <div className="mt-6 flex items-center justify-between border-t border-stone-200 pt-4">
-          <span className="text-sm font-medium text-charcoal">{room.rateFrom}</span>
+          <span className="text-sm font-medium text-charcoal">
+            {room.rateFrom}
+            <span className="font-normal text-stone-500"> / night</span>
+          </span>
           <ButtonLink href="/rooms" variant="outline" size="md">
             View details
           </ButtonLink>
