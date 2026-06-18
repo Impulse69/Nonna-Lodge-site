@@ -70,3 +70,20 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+  Default the tablet/desktop view to a slightly more compact 90% scale — the
+  look the owner prefers (equivalent to browser zoom at 90%; it reflows the
+  layout, unlike a font-size change). Phones (< 768px) stay at 100% so mobile
+  text remains comfortably readable.
+*/
+html {
+  background: var(--background);
+}
+
+@media (min-width: 768px) {
+  body {
+    zoom: 0.9;
+  }
+}
+
