@@ -1,24 +1,27 @@
 import { Quote } from "lucide-react";
 
-/* Placeholder testimonials — replace with real guest reviews when available. */
+/*
+  Sample testimonials with placeholder (fictional) names — swap for real guest
+  reviews (e.g. from Google or Booking.com) when available.
+*/
 const testimonials = [
   {
     quote:
       "A truly relaxing stay. The room was beautiful, the staff went out of their way to help, and we left feeling completely refreshed.",
-    name: "TODO: Guest name",
-    detail: "TODO: Stayed in the Garden Room",
+    name: "Akosua Boateng",
+    detail: "Stayed in the Premium Room",
   },
   {
     quote:
       "Everything about Nonna Lodge felt warm and personal. The setting is gorgeous and the food was a highlight of our trip.",
-    name: "TODO: Guest name",
-    detail: "TODO: Honeymoon Suite",
+    name: "Kwame Mensah",
+    detail: "Visited from Accra",
   },
   {
     quote:
       "Wonderful hospitality and such a peaceful place. We're already planning our next visit.",
-    name: "TODO: Guest name",
-    detail: "TODO: Family stay",
+    name: "Yaa Owusu",
+    detail: "Family Room / Suite",
   },
 ];
 
