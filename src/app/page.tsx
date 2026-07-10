@@ -6,6 +6,7 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { ButtonLink } from "@/components/ui/Button";
 import { RoomCard } from "@/components/rooms/RoomCard";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { FilmPlayer } from "@/components/ui/FilmPlayer";
 import { Testimonials } from "@/components/sections/Testimonials";
 import type { SiteImage } from "@/data/images";
 import { images } from "@/data/images";
@@ -53,6 +54,29 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      {/* Watch our film — hidden until a Vimeo ID is set in site.film */}
+      {site.film.vimeoId && (
+        <section className="bg-ink py-16 sm:py-24">
+          <Container>
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-clay-light">
+                Our film
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-cream sm:text-4xl">
+                Watch our film
+              </h2>
+              <p className="mt-4 text-cream/80">
+                Take a moment to experience Nonna Lodge — its spaces, its warmth and the
+                setting that makes a stay here special.
+              </p>
+            </div>
+            <div className="mx-auto mt-12 max-w-4xl">
+              <FilmPlayer vimeoId={site.film.vimeoId} image={images.ctaBand} />
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Featured rooms */}
       <section className="bg-sand/50 py-16 sm:py-24">

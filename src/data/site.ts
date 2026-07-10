@@ -28,6 +28,13 @@ export const site = {
   // TODO: point at the real booking engine. Falls back to the contact page.
   bookingUrl: "/contact",
 
+  // Full brand film. Paste the Vimeo video ID here — the numbers at the end of
+  // the share link, e.g. vimeo.com/123456789 -> "123456789". Leave empty to
+  // hide the "Watch our film" section on the home page.
+  film: {
+    vimeoId: "1208922393" as string,
+  },
+
   social: {
     // TODO: replace with real profile URLs (empty links are hidden in the UI).
     instagram: "",
