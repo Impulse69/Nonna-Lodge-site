@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { navItems, site } from "@/data/site";
@@ -14,6 +15,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8 lg:py-16">
         {/* Brand */}
         <div>
+          <Image
+            src="/logo.png"
+            alt=""
+            width={512}
+            height={512}
+            className="mb-4 h-16 w-16"
+          />
           <p className="font-serif text-2xl font-semibold text-charcoal">{site.name}</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-stone-600">{site.tagline}.</p>
           {socialLinks.length > 0 && (

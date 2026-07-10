@@ -27,6 +27,10 @@
 :root {
   --background: var(--color-cream);
   --foreground: var(--color-charcoal);
+
+  /* Single source for the desktop "compact" zoom — referenced by the body zoom
+     below and by .hero-screen so a full-viewport hero stays truly full-viewport. */
+  --zoom-desktop: 0.9;
 }
 
 @layer base {
@@ -83,7 +87,23 @@ html {
 
 @media (min-width: 768px) {
   body {
-    zoom: 0.9;
+    zoom: var(--zoom-desktop);
+  }
+}
+
+/*
+  Full-viewport hero. Because desktop applies `zoom` to the body, a plain 100vh
+  child only fills 90% of the screen — dividing by the zoom compensates so the
+  media truly fills the viewport. Mobile (no zoom) uses the dynamic viewport unit
+  so browser chrome doesn't leave a gap.
+*/
+.hero-screen {
+  min-height: 100dvh;
+}
+
+@media (min-width: 768px) {
+  .hero-screen {
+    min-height: calc(100dvh / var(--zoom-desktop));
   }
 }
 

@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-[88vh] items-center justify-center overflow-hidden">
+    <section className="hero-screen relative isolate flex items-center justify-center overflow-hidden">
       {/* Background video (falls back to the poster image on mobile / before load) */}
       <HeroVideo image={images.heroHome} videoSrc="/videos/hero-home.mp4" priority />
       {/* Readability overlay */}
@@ -42,6 +42,14 @@ export function Hero() {
       >
         <ChevronDown className="h-6 w-6 animate-bounce" />
       </div>
+
+      {/* Marks the bottom of the hero so the Header can reveal itself once the
+          hero has been scrolled past. See Header.tsx. */}
+      <div
+        data-hero-sentinel
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      />
     </section>
   );
 }

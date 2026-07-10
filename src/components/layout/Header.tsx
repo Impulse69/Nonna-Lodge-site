@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -8,10 +9,19 @@ import { cn } from "@/lib/cn";
 import { navItems, site } from "@/data/site";
 import { ButtonLink } from "@/components/ui/Button";
 
+// Run the hero-detection synchronously before paint on the client (so the nav
+// never flashes over a hero), while no-op-ing on the server.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // Does the current page have a video hero the nav should stay clear of?
+  const [hasOverlayHero, setHasOverlayHero] = useState(false);
+  // For an overlay hero: is the nav allowed to show yet (hero scrolled past)?
+  const [revealed, setRevealed] = useState(true);
 
   // Solidify the header once the user scrolls past the top of the page.
   useEffect(() => {
@@ -20,6 +30,48 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Video-hero pages render a `[data-hero-sentinel]` at the hero's bottom edge.
+  // When present (desktop only — phones keep a reachable menu button), hide the
+  // nav over the hero and reveal it once that sentinel scrolls above the top.
+  useIsomorphicLayoutEffect(() => {
+    const sentinel = document.querySelector("[data-hero-sentinel]");
+    if (!sentinel) {
+      setHasOverlayHero(false);
+      setRevealed(true);
+      return;
+    }
+
+    const wide = window.matchMedia("(min-width: 768px)");
+    let observer: IntersectionObserver | undefined;
+
+    const setup = () => {
+      observer?.disconnect();
+      if (!wide.matches) {
+        setHasOverlayHero(false);
+        setRevealed(true);
+        return;
+      }
+      setHasOverlayHero(true);
+      setRevealed(false);
+      observer = new IntersectionObserver(
+        ([entry]) => setRevealed(entry.boundingClientRect.top <= 0),
+        { threshold: 0 },
+      );
+      observer.observe(sentinel);
+    };
+
+    setup();
+    wide.addEventListener("change", setup);
+    return () => {
+      observer?.disconnect();
+      wide.removeEventListener("change", setup);
+    };
+  }, [pathname]);
+
+  // Overlay heroes always sit on a solid bar once revealed; ordinary pages
+  // solidify on scroll.
+  const solid = hasOverlayHero || scrolled;
 
   // Lock body scroll while the drawer is open.
   useEffect(() => {
@@ -35,19 +87,33 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
-        scrolled
+        "inset-x-0 top-0 z-50 transition-[transform,opacity,background-color,border-color] duration-300",
+        // Overlay heroes need the nav out of flow so the video fills the top;
+        // ordinary pages keep it sticky so content stays clear of it.
+        hasOverlayHero ? "fixed" : "sticky",
+        hasOverlayHero && !revealed && "pointer-events-none -translate-y-full opacity-0",
+        solid
           ? "border-b border-stone-200 bg-cream/90 backdrop-blur"
-          : "bg-cream/60 backdrop-blur-sm",
+          : "border-b border-transparent bg-cream/60 backdrop-blur-sm",
       )}
     >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8"
         aria-label="Primary"
       >
-        <Link href="/" className="flex flex-col leading-none" aria-label={`${site.name} home`}>
-          <span className="font-serif text-2xl font-semibold text-charcoal">{site.name}</span>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-stone-500">Boutique Hotel</span>
+        <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} home`}>
+          <Image
+            src="/logo.png"
+            alt=""
+            width={512}
+            height={512}
+            priority
+            className="h-11 w-11 shrink-0"
+          />
+          <span className="flex flex-col leading-none">
+            <span className="font-serif text-2xl font-semibold text-charcoal">{site.name}</span>
+            <span className="text-[10px] uppercase tracking-[0.25em] text-stone-500">Boutique Hotel</span>
+          </span>
         </Link>
 
         {/* Desktop navigation */}
