@@ -1,4 +1,4 @@
-import { SmartImage } from "@/components/ui/SmartImage";
+import { HeroVideo } from "@/components/ui/HeroVideo";
 import type { SiteImage } from "@/data/images";
 
 interface PageHeaderProps {
@@ -6,18 +6,15 @@ interface PageHeaderProps {
   eyebrow?: string;
   description?: string;
   image: SiteImage;
+  /** Optional background video, e.g. "/videos/hero-rooms.mp4". */
+  videoSrc?: string;
 }
 
 /** Compact banner used at the top of inner pages. */
-export function PageHeader({ title, eyebrow, description, image }: PageHeaderProps) {
+export function PageHeader({ title, eyebrow, description, image, videoSrc }: PageHeaderProps) {
   return (
     <section className="relative isolate flex min-h-[42vh] items-end overflow-hidden sm:min-h-[48vh]">
-      <SmartImage
-        image={image}
-        className="absolute inset-0 h-full w-full"
-        sizes="100vw"
-        priority
-      />
+      <HeroVideo image={image} videoSrc={videoSrc} priority />
       <div
         className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/35 to-charcoal/20"
         aria-hidden="true"

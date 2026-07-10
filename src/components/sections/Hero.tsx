@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import { SmartImage } from "@/components/ui/SmartImage";
+import { HeroVideo } from "@/components/ui/HeroVideo";
 import { ButtonLink } from "@/components/ui/Button";
 import { images } from "@/data/images";
 import { site } from "@/data/site";
@@ -7,13 +7,8 @@ import { site } from "@/data/site";
 export function Hero() {
   return (
     <section className="relative isolate flex min-h-[88vh] items-center justify-center overflow-hidden">
-      {/* Background photo */}
-      <SmartImage
-        image={images.heroHome}
-        className="absolute inset-0 h-full w-full"
-        sizes="100vw"
-        priority
-      />
+      {/* Background video (falls back to the poster image on mobile / before load) */}
+      <HeroVideo image={images.heroHome} videoSrc="/videos/hero-home.mp4" priority />
       {/* Readability overlay */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/35 to-charcoal/70"

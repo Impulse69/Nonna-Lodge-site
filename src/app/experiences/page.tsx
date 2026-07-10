@@ -24,6 +24,7 @@ export default function ExperiencesPage() {
         title="Things to enjoy"
         description="From relaxed dining to the great outdoors, there's plenty to make your stay memorable."
         image={images.experiencesHeader}
+        videoSrc="/videos/hero-experiences.mp4"
       />
 
       <section className="py-16 sm:py-24">

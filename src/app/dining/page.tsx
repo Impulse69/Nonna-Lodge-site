@@ -53,6 +53,7 @@ export default function DiningPage() {
         title="Eat, drink & relax"
         description="Good food and a warm welcome, from breakfast to a nightcap."
         image={images.diningHeader}
+        videoSrc="/videos/hero-dining.mp4"
       />
 
       <section className="py-16 sm:py-24">

@@ -24,6 +24,7 @@ export default function RoomsPage() {
         title="Rooms & Rates"
         description="Twenty rooms across four categories, each styled for comfort and rest."
         image={images.roomsHeader}
+        videoSrc="/videos/hero-rooms.mp4"
       />
 
       <section className="py-16 sm:py-24">
