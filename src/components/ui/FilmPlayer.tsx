@@ -3,22 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
-import type { SiteImage } from "@/data/images";
 
 interface FilmPlayerProps {
   /** Vimeo video ID, e.g. "123456789". */
   vimeoId: string;
-  /** Poster shown until the viewer clicks play. The Vimeo player (and its
-      scripts + video bytes) only load on interaction, so the page stays light
-      on mobile until someone actually chooses to watch. */
-  image: SiteImage;
 }
 
-export function FilmPlayer({ vimeoId, image }: FilmPlayerProps) {
+export function FilmPlayer({ vimeoId }: FilmPlayerProps) {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-charcoal shadow-2xl ring-1 ring-cream/10">
+    <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-charcoal/5">
       {playing ? (
         <iframe
           className="absolute inset-0 h-full w-full"
@@ -31,25 +26,22 @@ export function FilmPlayer({ vimeoId, image }: FilmPlayerProps) {
         <button
           type="button"
           onClick={() => setPlaying(true)}
-          className="group absolute inset-0 h-full w-full"
+          className="group absolute inset-0 flex flex-col items-center justify-center gap-5 bg-cream px-6"
           aria-label="Play the Nonna Lodge film"
         >
+          {/* Brand title card — the logo needs a light backdrop to read. */}
           <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            sizes="(max-width: 1024px) 100vw, 900px"
-            className="object-cover"
+            src="/logo.png"
+            alt=""
+            width={512}
+            height={512}
+            className="h-20 w-20 sm:h-32 sm:w-32"
           />
           <span
-            className="absolute inset-0 bg-charcoal/40 transition-colors group-hover:bg-charcoal/25"
-            aria-hidden="true"
-          />
-          <span
-            className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream/95 shadow-lg transition-transform duration-300 group-hover:scale-110"
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-clay shadow-lg transition-transform duration-300 group-hover:scale-110 sm:h-16 sm:w-16"
             aria-hidden="true"
           >
-            <Play className="ml-1 h-8 w-8 fill-clay text-clay" />
+            <Play className="ml-0.5 h-6 w-6 fill-cream text-cream sm:h-7 sm:w-7" />
           </span>
         </button>
       )}

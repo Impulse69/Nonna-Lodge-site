@@ -72,7 +72,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto mt-12 max-w-4xl">
-              <FilmPlayer vimeoId={site.film.vimeoId} image={images.ctaBand} />
+              <FilmPlayer vimeoId={site.film.vimeoId} />
             </div>
           </Container>
         </section>
