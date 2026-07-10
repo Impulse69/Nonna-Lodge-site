@@ -107,3 +107,24 @@ html {
   }
 }
 
+/*
+  Inner video-hero banners: a compact banner on phones, full-screen only from
+  tablet up (768px+, where the background video actually plays and the zoom
+  applies). The home hero uses .hero-screen and stays full-screen at every size.
+*/
+.hero-screen-from-md {
+  min-height: 42vh;
+}
+
+@media (min-width: 640px) {
+  .hero-screen-from-md {
+    min-height: 48vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-screen-from-md {
+    min-height: calc(100dvh / var(--zoom-desktop));
+  }
+}
+

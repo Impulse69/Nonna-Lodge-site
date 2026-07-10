@@ -22,7 +22,9 @@ export function PageHeader({ title, eyebrow, description, image, videoSrc }: Pag
     <section
       className={cn(
         "relative isolate flex items-end overflow-hidden",
-        videoSrc ? "hero-screen" : "min-h-[42vh] sm:min-h-[48vh]",
+        // Video heroes go full-screen only from tablet up; phones get a compact
+        // banner. Poster-only pages are always compact.
+        videoSrc ? "hero-screen-from-md" : "min-h-[42vh] sm:min-h-[48vh]",
       )}
     >
       <HeroVideo image={image} videoSrc={videoSrc} priority />
@@ -33,7 +35,7 @@ export function PageHeader({ title, eyebrow, description, image, videoSrc }: Pag
       <div
         className={cn(
           "relative z-10 mx-auto w-full max-w-6xl px-4 pt-24 text-cream sm:px-6 lg:px-8",
-          videoSrc ? "pb-16 sm:pb-20" : "pb-10",
+          videoSrc ? "pb-10 md:pb-20" : "pb-10",
         )}
       >
         {eyebrow && (
@@ -55,7 +57,7 @@ export function PageHeader({ title, eyebrow, description, image, videoSrc }: Pag
       {videoSrc && (
         <>
           <div
-            className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-cream/70"
+            className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-cream/70 md:block"
             aria-hidden="true"
           >
             <ChevronDown className="h-6 w-6 animate-bounce" />
