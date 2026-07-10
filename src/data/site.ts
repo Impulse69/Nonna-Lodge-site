@@ -9,8 +9,10 @@ export const site = {
   tagline: "A warm welcome in a beautiful setting",
   description:
     "Nonna Lodge is a boutique hotel offering elegant rooms, heartfelt hospitality and a peaceful escape. Discover comfortable stays, fine dining and memorable experiences.",
-  // TODO: set the live site URL once a domain is chosen (used for SEO/canonical/OG).
-  url: "https://www.nonnalodge.com",
+  // Live site URL — drives canonical links, the sitemap and social-share (OG)
+  // image URLs, so it must be a reachable address. Change to the custom domain
+  // once it points at this deployment.
+  url: "https://nonna-lodge-site.vercel.app",
 
   contact: {
     addressLine1: "Off Fire Service Road, Aduamoa-Kwahu",
