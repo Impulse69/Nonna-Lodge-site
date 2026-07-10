@@ -85,6 +85,7 @@ export function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
+    <>
     <header
       className={cn(
         "inset-x-0 top-0 z-50 transition-[transform,opacity,background-color,border-color] duration-300",
@@ -151,11 +152,17 @@ export function Header() {
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
+    </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — rendered OUTSIDE <header> on purpose: the header's
+          backdrop-filter (backdrop-blur) establishes a containing block for
+          fixed descendants, which would otherwise shrink this `fixed inset-0`
+          overlay to the header's height. Outside, it fills the viewport. */}
       <div
         className={cn(
-          "fixed inset-0 z-40 lg:hidden",
+          // overflow-hidden clips the off-canvas panel when closed so it can't
+          // cause horizontal scroll on mobile browsers.
+          "fixed inset-0 z-40 overflow-hidden lg:hidden",
           open ? "pointer-events-auto" : "pointer-events-none",
         )}
         aria-hidden={!open}
@@ -215,6 +222,6 @@ export function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
